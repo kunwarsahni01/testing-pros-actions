@@ -14,14 +14,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Autoformat
-        id: format
-        uses: SKIRT/auto-format@master
-      - name: Autocommit
-        if: steps.format.outputs.status == 'changed'
-        run: |
-          git config --global user.name 'auto-format'
-          git config --global user.email 'auto-format@auto.format'
-          git commit -am "Autoformat"
-          git push
+        with:
+          # check out HEAD on the branch
+          ref: ${{ github.head_ref }}
+          # make sure the parent commit is grabbed as well, because
+          # that's what will get formatted (i.e. the most recent commit)
+          fetch-depth: 2
+      # format the latest commit
+      - uses: purduesigbots/clang-format-action@1
+        # use one of clang-format's supported styles or leave this out to use the style in your .clang-format file
+        with:
+          style: file
+      # commit the changes (if there are any)
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.1.2
+        with:
+          commit_message: 🎨 apply clang-format changes
+          branch: ${{ github.head_ref }}
