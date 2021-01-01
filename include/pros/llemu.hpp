@@ -63,12 +63,8 @@ bool shutdown(void);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
 namespace {
-template <typename T> T convert_args(T arg) {
-	return arg;
-}
-const char* convert_args(const std::string& arg) {
-	return arg.c_str();
-}
+template <typename T> T convert_args(T arg) { return arg; }
+const char *convert_args(const std::string &arg) { return arg.c_str(); }
 } // namespace
 #pragma GCC diagnostic pop
 
@@ -91,8 +87,8 @@ const char* convert_args(const std::string& arg) {
  * errno values as specified above.
  */
 template <typename... Params>
-bool print(std::int16_t line, const char* fmt, Params... args) {
-	return pros::c::lcd_print(line, fmt, convert_args(args)...);
+bool print(std::int16_t line, const char *fmt, Params... args) {
+  return pros::c::lcd_print(line, fmt, convert_args(args)...);
 }
 
 /**
