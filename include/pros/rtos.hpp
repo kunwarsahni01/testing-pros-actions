@@ -31,7 +31,7 @@
 
 namespace pros {
 class Task {
-	public:
+public:
 	/**
 	 * Creates a new task and add it to the list of tasks that are ready to run.
 	 *
@@ -57,8 +57,10 @@ class Task {
 	 *        debugging. The name may be up to 32 characters long.
 	 *
 	 */
-	Task(task_fn_t function, void* parameters = NULL, std::uint32_t prio = TASK_PRIORITY_DEFAULT,
-	     std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT, const char* name = "");
+	Task(task_fn_t function, void* parameters = NULL,
+	     std::uint32_t prio = TASK_PRIORITY_DEFAULT,
+	     std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
+	     const char* name = "");
 
 	/**
 	 * Creates a new task and add it to the list of tasks that are ready to run.
@@ -102,14 +104,17 @@ class Task {
 	 *
 	 */
 	template <class F>
-	Task(F&& function, std::uint32_t prio = TASK_PRIORITY_DEFAULT, std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
+	Task(F&& function, std::uint32_t prio = TASK_PRIORITY_DEFAULT,
+	     std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
 	     const char* name = "")
 	    : Task(
 	          [](void* parameters) {
-		          std::unique_ptr<std::function<void()>> ptr{static_cast<std::function<void()>*>(parameters)};
+		          std::unique_ptr<std::function<void()>> ptr{
+		              static_cast<std::function<void()>*>(parameters)};
 		          (*ptr)();
 	          },
-	          new std::function<void()>(std::forward<F>(function)), prio, stack_depth, name) {
+	          new std::function<void()>(std::forward<F>(function)), prio,
+	          stack_depth, name) {
 		static_assert(std::is_invocable_r_v<void, F>);
 	}
 
@@ -129,7 +134,9 @@ class Task {
 	 */
 	template <class F>
 	Task(F&& function, const char* name)
-	    : Task(std::forward<F>(function), TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, name) {}
+	    : Task(std::forward<F>(function), TASK_PRIORITY_DEFAULT,
+	           TASK_STACK_DEPTH_DEFAULT, name) {
+	}
 
 	/**
 	 * Create a C++ task object from a task handle
@@ -249,7 +256,8 @@ class Task {
 	 * needing to overwrite, 1 otherwise.
 	 * For all other NOTIFY_ACTION values: always return 0
 	 */
-	std::uint32_t notify_ext(std::uint32_t value, notify_action_e_t action, std::uint32_t* prev_value);
+	std::uint32_t notify_ext(std::uint32_t value, notify_action_e_t action,
+	                         std::uint32_t* prev_value);
 
 	/**
 	 * Waits for a notification to be nonzero.
@@ -304,7 +312,8 @@ class Task {
 	 * \param delta
 	 *        The number of milliseconds to wait (1000 milliseconds per second)
 	 */
-	static void delay_until(std::uint32_t* const prev_time, const std::uint32_t delta);
+	static void delay_until(std::uint32_t* const prev_time,
+	                        const std::uint32_t delta);
 
 	/**
 	 * Gets the number of tasks the kernel is currently managing, including all
@@ -316,12 +325,12 @@ class Task {
 	 */
 	static std::uint32_t get_count(void);
 
-	private:
+private:
 	task_t task;
 };
 
 class Mutex {
-	public:
+public:
 	Mutex(void);
 
 	/**
@@ -356,7 +365,7 @@ class Mutex {
 	 */
 	bool give(void);
 
-	private:
+private:
 	std::shared_ptr<std::remove_pointer_t<mutex_t>> mutex;
 };
 
@@ -378,6 +387,6 @@ using pros::c::millis;
  *        The number of milliseconds to wait (1000 milliseconds per second)
  */
 using pros::c::delay;
-}  // namespace pros
+} // namespace pros
 
-#endif  // _PROS_RTOS_HPP_s
+#endif // _PROS_RTOS_HPP_s

@@ -18,14 +18,14 @@
 #ifndef _PROS_IMU_HPP_
 #define _PROS_IMU_HPP_
 
-#include <cstdint>
 #include "pros/imu.h"
+#include <cstdint>
 
 namespace pros {
 class Imu {
 	const std::uint8_t _port;
 
-	public:
+public:
 	Imu(const std::uint8_t port) : _port(port){};
 
 	/**
@@ -44,34 +44,35 @@ class Imu {
 	 */
 	virtual std::int32_t reset() const;
 	/**
-	* Set the Inertial Sensor's refresh interval in milliseconds.
-	*
-	* The rate may be specified in increments of 5ms, and will be rounded down to
-	* the nearest increment. The minimum allowable refresh rate is 5ms. The default
-	* rate is 10ms.
-	*
-	* As values are copied into the shared memory buffer only at 10ms intervals,
-	* setting this value to less than 10ms does not mean that you can poll the
-	* sensor's values any faster. However, it will guarantee that the data is as
-	* recent as possible.
-	*
-	* This function uses the following values of errno when an error state is
-	* reached:
-	* ENXIO - The given value is not within the range of V5 ports (1-21).
-	* ENODEV - The port cannot be configured as an Inertial Sensor
-	* EAGAIN - The sensor is still calibrating
-	*
-	* \param rate The data refresh interval in milliseconds
-	* \return 1 if the operation was successful or PROS_ERR if the operation
-	* failed, setting errno.
-	*/
+	 * Set the Inertial Sensor's refresh interval in milliseconds.
+	 *
+	 * The rate may be specified in increments of 5ms, and will be rounded down to
+	 * the nearest increment. The minimum allowable refresh rate is 5ms. The
+	 * default rate is 10ms.
+	 *
+	 * As values are copied into the shared memory buffer only at 10ms intervals,
+	 * setting this value to less than 10ms does not mean that you can poll the
+	 * sensor's values any faster. However, it will guarantee that the data is as
+	 * recent as possible.
+	 *
+	 * This function uses the following values of errno when an error state is
+	 * reached:
+	 * ENXIO - The given value is not within the range of V5 ports (1-21).
+	 * ENODEV - The port cannot be configured as an Inertial Sensor
+	 * EAGAIN - The sensor is still calibrating
+	 *
+	 * \param rate The data refresh interval in milliseconds
+	 * \return 1 if the operation was successful or PROS_ERR if the operation
+	 * failed, setting errno.
+	 */
 	virtual std::int32_t set_data_rate(std::uint32_t rate) const;
 	/**
-	 * Get the total number of degrees the Inertial Sensor has spun about the z-axis
+	 * Get the total number of degrees the Inertial Sensor has spun about the
+	 * z-axis
 	 *
 	 * This value is theoretically unbounded. Clockwise rotations are represented
-	 * with positive degree values, while counterclockwise rotations are represented
-	 * with negative ones.
+	 * with positive degree values, while counterclockwise rotations are
+	 * represented with negative ones.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -89,9 +90,9 @@ class Imu {
 	 * Get the Inertial Sensor's heading relative to the initial direction of its
 	 * x-axis
 	 *
-	 * This value is bounded by (-360,360). Clockwise rotations are represented with
-	 * positive degree values, while counterclockwise rotations are represented with
-	 * negative ones.
+	 * This value is bounded by (-360,360). Clockwise rotations are represented
+	 * with positive degree values, while counterclockwise rotations are
+	 * represented with negative ones.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -117,8 +118,8 @@ class Imu {
 	 * \param  port
 	 * 				 The V5 Inertial Sensor port number from 1-21
 	 * \return The quaternion representing the sensor's orientation. If the
-	 * operation failed, all the quaternion's members are filled with PROS_ERR_F and
-	 * errno is set.
+	 * operation failed, all the quaternion's members are filled with PROS_ERR_F
+	 * and errno is set.
 	 */
 	virtual pros::c::quaternion_s_t get_quaternion() const;
 	/**
@@ -133,8 +134,8 @@ class Imu {
 	 * \param  port
 	 * 				 The V5 Inertial Sensor port number from 1-21
 	 * \return The Euler angles representing the sensor's orientation. If the
-	 * operation failed, all the structure's members are filled with PROS_ERR_F and
-	 * errno is set.
+	 * operation failed, all the structure's members are filled with PROS_ERR_F
+	 * and errno is set.
 	 */
 	virtual pros::c::euler_s_t get_euler() const;
 	/**
@@ -163,7 +164,8 @@ class Imu {
 	 *
 	 * \param  port
 	 * 				 The V5 Inertial Sensor port number from 1-21
-	 * \return The roll angle, or PROS_ERR_F if the operation failed, setting errno.
+	 * \return The roll angle, or PROS_ERR_F if the operation failed, setting
+	 * errno.
 	 */
 	virtual double get_roll() const;
 	/**
@@ -177,7 +179,8 @@ class Imu {
 	 *
 	 * \param  port
 	 * 				 The V5 Inertial Sensor port number from 1-21
-	 * \return The yaw angle, or PROS_ERR_F if the operation failed, setting errno.
+	 * \return The yaw angle, or PROS_ERR_F if the operation failed, setting
+	 * errno.
 	 */
 	virtual double get_yaw() const;
 	/**
@@ -233,6 +236,6 @@ class Imu {
 	 */
 	virtual bool is_calibrating() const;
 };
-}  // namespace pros
+} // namespace pros
 
 #endif

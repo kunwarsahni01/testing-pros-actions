@@ -1,6 +1,6 @@
 /*
- * This code is a modified version of Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of Benjamin Jurke's work in 2015. You can
+ * read his blog post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -22,34 +22,34 @@ constexpr QTime day = 24 * hour;
 
 inline namespace literals {
 constexpr QTime operator"" _s(long double x) {
-  return QTime(x);
+	return QTime(x);
 }
 constexpr QTime operator"" _ms(long double x) {
-  return static_cast<double>(x) * millisecond;
+	return static_cast<double>(x) * millisecond;
 }
 constexpr QTime operator"" _min(long double x) {
-  return static_cast<double>(x) * minute;
+	return static_cast<double>(x) * minute;
 }
 constexpr QTime operator"" _h(long double x) {
-  return static_cast<double>(x) * hour;
+	return static_cast<double>(x) * hour;
 }
 constexpr QTime operator"" _day(long double x) {
-  return static_cast<double>(x) * day;
+	return static_cast<double>(x) * day;
 }
 constexpr QTime operator"" _s(unsigned long long int x) {
-  return QTime(static_cast<double>(x));
+	return QTime(static_cast<double>(x));
 }
 constexpr QTime operator"" _ms(unsigned long long int x) {
-  return static_cast<double>(x) * millisecond;
+	return static_cast<double>(x) * millisecond;
 }
 constexpr QTime operator"" _min(unsigned long long int x) {
-  return static_cast<double>(x) * minute;
+	return static_cast<double>(x) * minute;
 }
 constexpr QTime operator"" _h(unsigned long long int x) {
-  return static_cast<double>(x) * hour;
+	return static_cast<double>(x) * hour;
 }
 constexpr QTime operator"" _day(unsigned long long int x) {
-  return static_cast<double>(x) * day;
+	return static_cast<double>(x) * day;
 }
 } // namespace literals
 } // namespace okapi

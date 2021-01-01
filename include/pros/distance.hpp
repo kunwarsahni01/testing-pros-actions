@@ -25,7 +25,7 @@
 
 namespace pros {
 class Distance {
-	public:
+public:
 	/**
 	 * Creates a Distance Sensor object for the given port.
 	 *
@@ -106,9 +106,9 @@ class Distance {
 	 */
 	std::uint8_t get_port();
 
-	private:
+private:
 	const std::uint8_t _port;
 };
-}  // namespace pros
+} // namespace pros
 
 #endif

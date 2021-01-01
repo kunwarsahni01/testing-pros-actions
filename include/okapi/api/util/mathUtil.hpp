@@ -120,50 +120,55 @@ static constexpr std::int8_t adiUpdateRate = 10;
  * @return `base^expo`.
  */
 constexpr double ipow(const double base, const int expo) {
-  return (expo == 0)
-           ? 1
-           : expo == 1 ? base
-                       : expo > 1 ? ((expo & 1) ? base * ipow(base, expo - 1)
-                                                : ipow(base, expo / 2) * ipow(base, expo / 2))
-                                  : 1 / ipow(base, -expo);
+	return (expo == 0)
+	           ? 1
+	           : expo == 1 ? base
+	                       : expo > 1 ? ((expo & 1) ? base * ipow(base, expo - 1)
+	                                                : ipow(base, expo / 2) *
+	                                                      ipow(base, expo / 2))
+	                                  : 1 / ipow(base, -expo);
 }
 
 /**
  * Cuts out a range from the number. The new range of the input number will be
- * `(-inf, min]U[max, +inf)`. If value sits equally between `min` and `max`, `max` will be returned.
+ * `(-inf, min]U[max, +inf)`. If value sits equally between `min` and `max`,
+ * `max` will be returned.
  *
  * @param value The number to bound.
  * @param min The lower bound of range.
  * @param max The upper bound of range.
  * @return The remapped value.
  */
-constexpr double cutRange(const double value, const double min, const double max) {
-  const double middle = max - ((max - min) / 2);
+constexpr double cutRange(const double value, const double min,
+                          const double max) {
+	const double middle = max - ((max - min) / 2);
 
-  if (value > min && value < middle) {
-    return min;
-  } else if (value <= max && value >= middle) {
-    return max;
-  }
+	if (value > min && value < middle) {
+		return min;
+	} else if (value <= max && value >= middle) {
+		return max;
+	}
 
-  return value;
+	return value;
 }
 
 /**
- * Deadbands a range of the number. Returns the input value, or `0` if it is in the range `[min,
- * max]`.
+ * Deadbands a range of the number. Returns the input value, or `0` if it is in
+ * the range `[min, max]`.
  *
  * @param value The number to deadband.
  * @param min The lower bound of deadband.
  * @param max The upper bound of deadband.
  * @return The input value or `0` if it is in the range `[min, max]`.
  */
-constexpr double deadband(const double value, const double min, const double max) {
-  return std::clamp(value, min, max) == value ? 0 : value;
+constexpr double deadband(const double value, const double min,
+                          const double max) {
+	return std::clamp(value, min, max) == value ? 0 : value;
 }
 
 /**
- * Remap a value in the range `[oldMin, oldMax]` to the range `[newMin, newMax]`.
+ * Remap a value in the range `[oldMin, oldMax]` to the range `[newMin,
+ * newMax]`.
  *
  * @param value The value in the old range.
  * @param oldMin The old range lower bound.
@@ -172,12 +177,10 @@ constexpr double deadband(const double value, const double min, const double max
  * @param newMax The new range upper bound.
  * @return The input value in the new range `[newMin, newMax]`.
  */
-constexpr double remapRange(const double value,
-                            const double oldMin,
-                            const double oldMax,
-                            const double newMin,
+constexpr double remapRange(const double value, const double oldMin,
+                            const double oldMax, const double newMin,
                             const double newMax) {
-  return (value - oldMin) * ((newMax - newMin) / (oldMax - oldMin)) + newMin;
+	return (value - oldMin) * ((newMax - newMin) / (oldMax - oldMin)) + newMin;
 }
 
 /**
@@ -187,7 +190,7 @@ constexpr double remapRange(const double value,
  * @return The corresponding value.
  */
 template <typename E> constexpr auto toUnderlyingType(const E e) noexcept {
-  return static_cast<std::underlying_type_t<E>>(e);
+	return static_cast<std::underlying_type_t<E>>(e);
 }
 
 /**
@@ -197,19 +200,19 @@ template <typename E> constexpr auto toUnderlyingType(const E e) noexcept {
  * @return True corresponds to `1` and false corresponds to `-1`.
  */
 constexpr auto boolToSign(const bool b) noexcept {
-  return b ? 1 : -1;
+	return b ? 1 : -1;
 }
 
 /**
- * Computes `lhs mod rhs` using Euclidean division. C's `%` symbol computes the remainder, not
- * modulus.
+ * Computes `lhs mod rhs` using Euclidean division. C's `%` symbol computes the
+ * remainder, not modulus.
  *
  * @param lhs The left-hand side.
  * @param rhs The right-hand side.
  * @return `lhs` mod `rhs`.
  */
 constexpr long modulus(const long lhs, const long rhs) noexcept {
-  return ((lhs % rhs) + rhs) % rhs;
+	return ((lhs % rhs) + rhs) % rhs;
 }
 
 /**
@@ -218,17 +221,18 @@ constexpr long modulus(const long lhs, const long rhs) noexcept {
  * @param igearset The gearset.
  * @return The corresponding TPR.
  */
-constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexcept {
-  switch (igearset) {
-  case AbstractMotor::gearset::red:
-    return imev5RedTPR;
-  case AbstractMotor::gearset::green:
-    return imev5GreenTPR;
-  case AbstractMotor::gearset::blue:
-  case AbstractMotor::gearset::invalid:
-  default:
-    return imev5BlueTPR;
-  }
+constexpr std::int32_t
+gearsetToTPR(const AbstractMotor::gearset igearset) noexcept {
+	switch (igearset) {
+	case AbstractMotor::gearset::red:
+		return imev5RedTPR;
+	case AbstractMotor::gearset::green:
+		return imev5GreenTPR;
+	case AbstractMotor::gearset::blue:
+	case AbstractMotor::gearset::invalid:
+	default:
+		return imev5BlueTPR;
+	}
 }
 
 /**
@@ -245,12 +249,12 @@ constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexc
  * @return An equivalent ADI port number.
  */
 constexpr std::int8_t transformADIPort(const std::int8_t port) {
-  if (port >= 'a' && port <= 'h') {
-    return port - ('a' - 1);
-  } else if (port >= 'A' && port <= 'H') {
-    return port - ('A' - 1);
-  } else {
-    return port;
-  }
+	if (port >= 'a' && port <= 'h') {
+		return port - ('a' - 1);
+	} else if (port >= 'A' && port <= 'H') {
+		return port - ('A' - 1);
+	} else {
+		return port;
+	}
 }
 } // namespace okapi

@@ -27,7 +27,7 @@
 
 namespace pros {
 class Optical {
-	public:
+public:
 	/**
 	 * Creates an Optical Sensor object for the given port.
 	 *
@@ -52,8 +52,8 @@ class Optical {
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
 	 * ENODEV - The port cannot be configured as an Optical Sensor
 	 *
-	 * \return hue value if the operation was successful or PROS_ERR_F if the operation
-	 * failed, setting errno.
+	 * \return hue value if the operation was successful or PROS_ERR_F if the
+	 * operation failed, setting errno.
 	 */
 	virtual double get_hue();
 
@@ -142,7 +142,7 @@ class Optical {
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
 	 * ENODEV - The port cannot be configured as an Optical Sensor
 	 *
-	 * \return rgb value if the operation was successful or an optical_rgb_s_t 
+	 * \return rgb value if the operation was successful or an optical_rgb_s_t
 	 * with all fields set to PROS_ERR if the operation failed, setting errno.
 	 */
 	virtual pros::c::optical_rgb_s_t get_rgb();
@@ -155,7 +155,7 @@ class Optical {
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
 	 * ENODEV - The port cannot be configured as an Optical Sensor
 	 *
-	 * \return raw rgb value if the operation was successful or an optical_raw_s_t 
+	 * \return raw rgb value if the operation was successful or an optical_raw_s_t
 	 * with all fields set to PROS_ERR if the operation failed, setting errno.
 	 */
 	virtual pros::c::optical_raw_s_t get_raw();
@@ -188,8 +188,9 @@ class Optical {
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
 	 * ENODEV - The port cannot be configured as an Optical Sensor
 	 *
-	 * \return gesture value if the operation was successful or an optical_gesture_s_t 
-	 * with all fields set to PROS_ERR if the operation failed, setting errno.
+	 * \return gesture value if the operation was successful or an
+	 * optical_gesture_s_t with all fields set to PROS_ERR if the operation
+	 * failed, setting errno.
 	 */
 	virtual pros::c::optical_gesture_s_t get_gesture_raw();
 
@@ -201,8 +202,8 @@ class Optical {
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
 	 * ENODEV - The port cannot be configured as an Optical Sensor
 	 *
-	 * \return 1 if the operation is successful or PROS_ERR if the operation failed,
- 	 * setting errno.
+	 * \return 1 if the operation is successful or PROS_ERR if the operation
+	 * failed, setting errno.
 	 */
 	virtual std::int32_t enable_gesture();
 
@@ -214,8 +215,8 @@ class Optical {
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
 	 * ENODEV - The port cannot be configured as an Optical Sensor
 	 *
-	 * \return 1 if the operation is successful or PROS_ERR if the operation failed,
- 	 * setting errno.
+	 * \return 1 if the operation is successful or PROS_ERR if the operation
+	 * failed, setting errno.
 	 */
 	virtual std::int32_t disable_gesture();
 
@@ -226,9 +227,9 @@ class Optical {
 	 */
 	virtual std::uint8_t get_port();
 
-	private:
+private:
 	const std::uint8_t _port;
 };
-}  // namespace pros
+} // namespace pros
 
 #endif

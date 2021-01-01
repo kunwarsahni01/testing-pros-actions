@@ -19,12 +19,12 @@
 #ifndef _PROS_MOTORS_HPP_
 #define _PROS_MOTORS_HPP_
 
-#include <cstdint>
 #include "pros/motors.h"
+#include <cstdint>
 
 namespace pros {
 class Motor {
-	public:
+public:
 	/**
 	 * Creates a Motor object for the given port and specifications.
 	 *
@@ -42,10 +42,12 @@ class Motor {
 	 * \param encoder_units
 	 *        The motor's encoder units
 	 */
-	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset, const bool reverse,
+	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset,
+	               const bool reverse,
 	               const motor_encoder_units_e_t encoder_units);
 
-	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset, const bool reverse);
+	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset,
+	               const bool reverse);
 
 	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset);
 
@@ -118,7 +120,8 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	virtual std::int32_t move_absolute(const double position, const std::int32_t velocity) const;
+	virtual std::int32_t move_absolute(const double position,
+	                                   const std::int32_t velocity) const;
 
 	/**
 	 * Sets the relative target position for the motor to move to.
@@ -143,7 +146,8 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	virtual std::int32_t move_relative(const double position, const std::int32_t velocity) const;
+	virtual std::int32_t move_relative(const double position,
+	                                   const std::int32_t velocity) const;
 
 	/**
 	 * Sets the velocity for the motor.
@@ -200,7 +204,8 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	virtual std::int32_t modify_profiled_velocity(const std::int32_t velocity) const;
+	virtual std::int32_t
+	modify_profiled_velocity(const std::int32_t velocity) const;
 
 	/**
 	 * Gets the target position set for the motor by the user.
@@ -530,7 +535,8 @@ class Motor {
 	 * \return 1 if the operation was successful or PROS_ERR if the operation
 	 * failed, setting errno.
 	 */
-	virtual std::int32_t set_encoder_units(const motor_encoder_units_e_t units) const;
+	virtual std::int32_t
+	set_encoder_units(const motor_encoder_units_e_t units) const;
 
 	/**
 	 * Sets one of motor_gearset_e_t for the motor.
@@ -594,8 +600,10 @@ class Motor {
 	 *
 	 * \return A motor_pid_s_t struct formatted properly in 4.4.
 	 */
-	static motor_pid_full_s_t convert_pid_full(double kf, double kp, double ki, double kd, double filter, double limit,
-	                                           double threshold, double loopspeed);
+	static motor_pid_full_s_t convert_pid_full(double kf, double kp, double ki,
+	                                           double kd, double filter,
+	                                           double limit, double threshold,
+	                                           double loopspeed);
 
 	/**
 	 * Sets one of motor_pid_s_t for the motor. This intended to just modify the
@@ -724,8 +732,8 @@ class Motor {
 	 * reached:
 	 * ENODEV - The port cannot be configured as a motor
 	 *
-	 * \return The motor's current limit in mA or PROS_ERR if the operation failed,
-	 * setting errno.
+	 * \return The motor's current limit in mA or PROS_ERR if the operation
+	 * failed, setting errno.
 	 */
 	virtual std::int32_t get_current_limit(void) const;
 
@@ -821,13 +829,13 @@ class Motor {
 	 */
 	virtual std::uint8_t get_port(void) const;
 
-	private:
+private:
 	const std::uint8_t _port;
 };
 
 namespace literals {
 const pros::Motor operator"" _mtr(const unsigned long long int m);
 const pros::Motor operator"" _rmtr(const unsigned long long int m);
-}  // namespace literals
-}  // namespace pros
-#endif  // _PROS_MOTORS_HPP_
+} // namespace literals
+} // namespace pros
+#endif // _PROS_MOTORS_HPP_

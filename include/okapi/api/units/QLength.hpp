@@ -1,6 +1,6 @@
 /*
- * This code is a modified version of Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of Benjamin Jurke's work in 2015. You can
+ * read his blog post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -26,52 +26,52 @@ constexpr QLength mile = 5280 * foot;
 
 inline namespace literals {
 constexpr QLength operator"" _mm(long double x) {
-  return static_cast<double>(x) * millimeter;
+	return static_cast<double>(x) * millimeter;
 }
 constexpr QLength operator"" _cm(long double x) {
-  return static_cast<double>(x) * centimeter;
+	return static_cast<double>(x) * centimeter;
 }
 constexpr QLength operator"" _m(long double x) {
-  return static_cast<double>(x) * meter;
+	return static_cast<double>(x) * meter;
 }
 constexpr QLength operator"" _km(long double x) {
-  return static_cast<double>(x) * kilometer;
+	return static_cast<double>(x) * kilometer;
 }
 constexpr QLength operator"" _mi(long double x) {
-  return static_cast<double>(x) * mile;
+	return static_cast<double>(x) * mile;
 }
 constexpr QLength operator"" _yd(long double x) {
-  return static_cast<double>(x) * yard;
+	return static_cast<double>(x) * yard;
 }
 constexpr QLength operator"" _ft(long double x) {
-  return static_cast<double>(x) * foot;
+	return static_cast<double>(x) * foot;
 }
 constexpr QLength operator"" _in(long double x) {
-  return static_cast<double>(x) * inch;
+	return static_cast<double>(x) * inch;
 }
 constexpr QLength operator"" _mm(unsigned long long int x) {
-  return static_cast<double>(x) * millimeter;
+	return static_cast<double>(x) * millimeter;
 }
 constexpr QLength operator"" _cm(unsigned long long int x) {
-  return static_cast<double>(x) * centimeter;
+	return static_cast<double>(x) * centimeter;
 }
 constexpr QLength operator"" _m(unsigned long long int x) {
-  return static_cast<double>(x) * meter;
+	return static_cast<double>(x) * meter;
 }
 constexpr QLength operator"" _km(unsigned long long int x) {
-  return static_cast<double>(x) * kilometer;
+	return static_cast<double>(x) * kilometer;
 }
 constexpr QLength operator"" _mi(unsigned long long int x) {
-  return static_cast<double>(x) * mile;
+	return static_cast<double>(x) * mile;
 }
 constexpr QLength operator"" _yd(unsigned long long int x) {
-  return static_cast<double>(x) * yard;
+	return static_cast<double>(x) * yard;
 }
 constexpr QLength operator"" _ft(unsigned long long int x) {
-  return static_cast<double>(x) * foot;
+	return static_cast<double>(x) * foot;
 }
 constexpr QLength operator"" _in(unsigned long long int x) {
-  return static_cast<double>(x) * inch;
+	return static_cast<double>(x) * inch;
 }
 } // namespace literals
 } // namespace okapi

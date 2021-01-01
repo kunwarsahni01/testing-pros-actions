@@ -1,6 +1,6 @@
 /*
- * This code is a modified version of Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of Benjamin Jurke's work in 2015. You can
+ * read his blog post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -23,22 +23,22 @@ constexpr QPressure psi = pound * G / inch2;
 
 inline namespace literals {
 constexpr QPressure operator"" _Pa(long double x) {
-  return QPressure(x);
+	return QPressure(x);
 }
 constexpr QPressure operator"" _Pa(unsigned long long int x) {
-  return QPressure(static_cast<double>(x));
+	return QPressure(static_cast<double>(x));
 }
 constexpr QPressure operator"" _bar(long double x) {
-  return static_cast<double>(x) * bar;
+	return static_cast<double>(x) * bar;
 }
 constexpr QPressure operator"" _bar(unsigned long long int x) {
-  return static_cast<double>(x) * bar;
+	return static_cast<double>(x) * bar;
 }
 constexpr QPressure operator"" _psi(long double x) {
-  return static_cast<double>(x) * psi;
+	return static_cast<double>(x) * psi;
 }
 constexpr QPressure operator"" _psi(unsigned long long int x) {
-  return static_cast<double>(x) * psi;
+	return static_cast<double>(x) * psi;
 }
 } // namespace literals
 } // namespace okapi

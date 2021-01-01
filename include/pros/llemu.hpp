@@ -63,14 +63,13 @@ bool shutdown(void);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
 namespace {
-template <typename T>
-T convert_args(T arg) {
+template <typename T> T convert_args(T arg) {
 	return arg;
 }
 const char* convert_args(const std::string& arg) {
 	return arg.c_str();
 }
-}  // namespace
+} // namespace
 #pragma GCC diagnostic pop
 
 /**
@@ -193,7 +192,7 @@ void register_btn2_cb(lcd_btn_cb_fn_t cb);
  * \return The buttons pressed as a bit mask
  */
 std::uint8_t read_buttons(void);
-}  // namespace lcd
-}  // namespace pros
+} // namespace lcd
+} // namespace pros
 
-#endif  // _PROS_LLEMU_HPP_
+#endif // _PROS_LLEMU_HPP_

@@ -26,15 +26,15 @@ namespace pros {
 class Rotation {
 	const std::uint8_t _port;
 
-	public:
+public:
 	Rotation(const std::uint8_t port) : _port(port){};
 
 	/**
-	 * Reset the Rotation Sensor 
-	 * 
+	 * Reset the Rotation Sensor
+	 *
 	 * Reset the current absolute position to be the same as the
 	 * Rotation Sensor angle.
-	 * 
+	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
 	 * ENXIO - The given value is not within the range of V5 ports (1-21).
@@ -46,7 +46,7 @@ class Rotation {
 	virtual std::int32_t reset();
 
 	/**
- 	 * Set the Rotation Sensor position reading to a desired rotation value
+	 * Set the Rotation Sensor position reading to a desired rotation value
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -76,7 +76,7 @@ class Rotation {
 	virtual std::int32_t reset_position(void);
 
 	/**
- 	 * Get the Rotation Sensor's current position in centidegrees
+	 * Get the Rotation Sensor's current position in centidegrees
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -89,7 +89,7 @@ class Rotation {
 	virtual std::int32_t get_position();
 
 	/**
- 	 * Get the Rotation Sensor's current velocity in centidegrees per second
+	 * Get the Rotation Sensor's current velocity in centidegrees per second
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -98,7 +98,7 @@ class Rotation {
 	 *
 	 * \param  port
 	 * 				 The V5 Rotation Sensor port number from 1-21
-	 * \return The 
+	 * \return The
 	 value or PROS_ERR_F if the operation failed, setting
 	 * errno.
 	 */
@@ -160,6 +160,6 @@ class Rotation {
 	 */
 	virtual std::int32_t get_reversed();
 };
-}  // namespace pros
+} // namespace pros
 
 #endif

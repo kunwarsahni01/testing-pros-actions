@@ -28,7 +28,7 @@
 
 namespace pros {
 class Controller {
-	public:
+public:
 	/**
 	 * Creates a controller object for the given controller id.
 	 *
@@ -137,8 +137,7 @@ class Controller {
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
-	template <typename T>
-	T convert_args(T arg) {
+	template <typename T> T convert_args(T arg) {
 		return arg;
 	}
 	const char* convert_args(const std::string& arg) {
@@ -170,8 +169,10 @@ class Controller {
 	 * failed, setting errno.
 	 */
 	template <typename... Params>
-	std::int32_t print(std::uint8_t line, std::uint8_t col, const char* fmt, Params... args) {
-		return pros::c::controller_print(_id, line, col, fmt, convert_args(args)...);
+	std::int32_t print(std::uint8_t line, std::uint8_t col, const char* fmt,
+	                   Params... args) {
+		return pros::c::controller_print(_id, line, col, fmt,
+		                                 convert_args(args)...);
 	}
 
 	/**
@@ -196,7 +197,8 @@ class Controller {
 	 * failed, setting errno.
 	 */
 	std::int32_t set_text(std::uint8_t line, std::uint8_t col, const char* str);
-	std::int32_t set_text(std::uint8_t line, std::uint8_t col, const std::string& str);
+	std::int32_t set_text(std::uint8_t line, std::uint8_t col,
+	                      const std::string& str);
 
 	/**
 	 * Clears an individual line of the controller screen.
@@ -220,8 +222,8 @@ class Controller {
 	/**
 	 * Rumble the controller.
 	 *
-	 * \note Controller rumble activation is currently in beta, so continuous, fast
-	 * updates will not work well.
+	 * \note Controller rumble activation is currently in beta, so continuous,
+	 *fast updates will not work well.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -255,7 +257,7 @@ class Controller {
 	 */
 	std::int32_t clear(void);
 
-	private:
+private:
 	controller_id_e_t _id;
 };
 
@@ -303,7 +305,7 @@ double get_temperature(void);
  * \return The current capacity of the battery
  */
 int32_t get_voltage(void);
-}  // namespace battery
+} // namespace battery
 
 namespace competition {
 /**
@@ -316,7 +318,7 @@ std::uint8_t get_status(void);
 std::uint8_t is_autonomous(void);
 std::uint8_t is_connected(void);
 std::uint8_t is_disabled(void);
-}  // namespace competition
+} // namespace competition
 
 namespace usd {
 /**
@@ -325,7 +327,7 @@ namespace usd {
  * \return 1 if the SD card is installed, 0 otherwise
  */
 std::int32_t is_installed(void);
-}  // namespace usd
-}  // namespace pros
+} // namespace usd
+} // namespace pros
 
-#endif  // _PROS_MISC_HPP_
+#endif // _PROS_MISC_HPP_

@@ -19,12 +19,12 @@
 #ifndef _PROS_SERIAL_HPP_
 #define _PROS_SERIAL_HPP_
 
-#include <cstdint>
 #include "pros/serial.h"
+#include <cstdint>
 
 namespace pros {
 class Serial {
-	public:
+public:
 	/**
 	 * Creates a Serial object for the given port and specifications.
 	 *
@@ -43,9 +43,10 @@ class Serial {
 	explicit Serial(std::uint8_t port);
 
 	/******************************************************************************/
-	/**                      Serial communication functions                      **/
-	/**                                                                          **/
-	/**  These functions allow programmers to communicate using UART over RS485  **/
+	/**                      Serial communication functions **/
+	/** **/
+	/**  These functions allow programmers to communicate using UART over RS485
+	 * **/
 	/******************************************************************************/
 
 	/**
@@ -98,16 +99,16 @@ class Serial {
 	 * EINVAL - The given value is not within the range of V5 ports (1-21).
 	 * EACCES - Another resource is currently trying to access the port.
 	 *
-	 * \return The number of bytes avaliable to be read or PROS_ERR if the operation
-	 * failed, setting errno.
+	 * \return The number of bytes avaliable to be read or PROS_ERR if the
+	 * operation failed, setting errno.
 	 */
 	virtual std::int32_t get_read_avail() const;
 
 	/**
 	 * Returns the number of bytes free in the port's FIFO output buffer.
 	 *
-	 * \note This function does not actually write any bytes, is simply returns the
-	 * number of bytes free in the port's buffer.
+	 * \note This function does not actually write any bytes, is simply returns
+	 * the number of bytes free in the port's buffer.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -127,7 +128,8 @@ class Serial {
 	std::uint8_t get_port() const;
 
 	/**
-	 * Reads the next byte avaliable in the port's input buffer without removing it.
+	 * Reads the next byte avaliable in the port's input buffer without removing
+	 * it.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -156,8 +158,8 @@ class Serial {
 	 * Reads up to the next length bytes from the port's input buffer and places
 	 * them in the user supplied buffer.
 	 *
-	 * \note This function will only return bytes that are currently avaliable to be
-	 * read and will not block waiting for any to arrive.
+	 * \note This function will only return bytes that are currently avaliable to
+	 * be read and will not block waiting for any to arrive.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -169,16 +171,16 @@ class Serial {
 	 * \param length
 	 *        The maximum number of bytes to read
 	 *
-	 * \return The number of bytes read or PROS_ERR if the operation failed, setting
-	 * errno.
+	 * \return The number of bytes read or PROS_ERR if the operation failed,
+	 * setting errno.
 	 */
 	virtual std::int32_t read(std::uint8_t* buffer, std::int32_t length) const;
 
 	/**
 	 * Write the given byte to the port's output buffer.
 	 *
-	 * \note Data in the port's output buffer is written to the serial port as soon
-	 * as possible on a FIFO basis and can not be done manually by the user.
+	 * \note Data in the port's output buffer is written to the serial port as
+	 * soon as possible on a FIFO basis and can not be done manually by the user.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -195,11 +197,11 @@ class Serial {
 	virtual std::int32_t write_byte(std::uint8_t buffer) const;
 
 	/**
-	 * Writes up to length bytes from the user supplied buffer to the port's output
-	 * buffer.
+	 * Writes up to length bytes from the user supplied buffer to the port's
+	 * output buffer.
 	 *
-	 * \note Data in the port's output buffer is written to the serial port as soon
-	 * as possible on a FIFO basis and can not be done manually by the user.
+	 * \note Data in the port's output buffer is written to the serial port as
+	 * soon as possible on a FIFO basis and can not be done manually by the user.
 	 *
 	 * This function uses the following values of errno when an error state is
 	 * reached:
@@ -217,12 +219,12 @@ class Serial {
 	 */
 	virtual std::int32_t write(std::uint8_t* buffer, std::int32_t length) const;
 
-	private:
+private:
 	const std::uint8_t _port;
 };
 
 namespace literals {
 const pros::Serial operator"" _ser(const unsigned long long int m);
-}  // namespace literals
-}  // namespace pros
-#endif  // _PROS_SERIAL_HPP_
+} // namespace literals
+} // namespace pros
+#endif // _PROS_SERIAL_HPP_
