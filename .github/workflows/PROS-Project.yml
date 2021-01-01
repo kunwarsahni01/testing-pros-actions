@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  install-pros:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -27,12 +27,6 @@ jobs:
           packages: https://github.com/purduesigbots/pros-cli/releases/download/3.1.4/pros_cli_v5-3.1.4-py3-none-any.whl
       - name: Testing PROS Install 
         run: prosv5 --version
-
-  build:
-    needs: [install-pros]
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
       - name: Build PROS Project  
